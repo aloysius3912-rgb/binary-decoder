@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Logic Visualizer — Digital Binary Decoder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css">       
+    <link rel="stylesheet" href="visualizer.css">  
+</head>
+<body>
+
+    <div id="canvas-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+
+    <header class="main-header">
+        <div class="container header-container">
+          <a href="landing.html" class="brand">
+            <span style="color:var(--accent-2); font-size:1.4rem;">⌁</span> Digital Binary Decoder
+          </a>
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="showcase.html" class="active">Showcase</a>
+            <a href="quiz1.html">Quiz 1</a>
+            <a href="quiz2.html">Quiz 2</a>
+          </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 60px;">
+        
+        <div style="margin-bottom: 20px;">
+            <a href="showcase.html" class="back-link">← Back to Showcase</a>
+        </div>
+
+        <div class="solver-header">
+            <h1>Logic Function Visualizer 
+                <div class="info-tooltip-wrapper">
+                    <span class="info-icon">ⓘ</span>
+                    <div class="info-tooltip-content">
+                        <h4>How to use:</h4>
+                        <ul>
+                            <li>Choose the Decoder Size and Output Type.</li>
+                            <li>Type your input variables (they will update on the diagram instantly).</li>
+                            <li>Click the minterm buttons to dynamically route wires from the decoder to the logic gate.</li>
+                        </ul>
+                        
+                        <h4>Additional Information:</h4>
+                        <ul>
+                            <li>Variables supported: <b>W, X, Y, Z, 0, 1</b> and operators <b>+ - ' ( ) ⊕ *</b>.</li>
+                            <li><b>EN (Enable)</b> pin must be either <b>0</b> or <b>1</b>.</li>
+                            <li><b>Active High</b> uses an OR gate to sum the active minterms.</li>
+                            <li><b>Active Low</b> uses a NAND gate and inversion bubbles to achieve the exact same logic function.</li>
+                        </ul>
+                    </div>
+                </div>
+            </h1>
+            <p>Design a circuit by selecting active minterms to generate a Boolean function.</p>
+        </div>
+
+        <div class="solver-layout">
+            
+            <div class="solver-panel diagram-panel">
+                <div id="diagram-container" style="width: 100%; height: 100%; min-height: 450px; display: flex; justify-content: center; align-items: center;">
+                </div>
+            </div>
+
+            <div class="solver-panel controls-panel">
+                
+                <div class="section-title">1. CONFIGURATION</div>
+                <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                    <div class="dropdown-row" style="flex: 1; margin-bottom: 0;">
+                        <label style="display:block; margin-bottom:5px; color:#94a3b8; font-size:0.95rem;">Decoder Size:</label>
+                        <select id="decoder-size" class="dark-input" style="width: 100%; cursor:pointer; padding: 10px;">
+                            <option value="2x4">2-to-4 Decoder</option>
+                            <option value="3x8" selected>3-to-8 Decoder</option>
+                            <option value="4x16">4-to-16 Decoder</option>
+                        </select>
+                    </div>
+                    <div class="dropdown-row" style="flex: 1; margin-bottom: 0;">
+                        <label style="display:block; margin-bottom:5px; color:#94a3b8; font-size:0.95rem;">Decoder Output Type:</label>
+                        <select id="logic-type" class="dark-input" style="width: 100%; cursor:pointer; padding: 10px;">
+                            <option value="high">Active High (AH / OR)</option>
+                            <option value="low">Active Low (AL / NAND)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="section-title">2. INPUT VARIABLES</div>
+                <div class="input-grid-horizontal">
+                    <div class="input-col" id="col-w" style="display:none;">
+                        <label class="lbl-blue" id="lbl-w">I3</label>
+                        <input type="text" id="inp-w" value="W" class="dark-input center-text" maxlength="5">
+                    </div>
+                    <div class="input-col">
+                        <label class="lbl-blue" id="lbl-x">I2</label>
+                        <input type="text" id="inp-x" value="X" class="dark-input center-text" maxlength="5">
+                    </div>
+                    <div class="input-col">
+                        <label class="lbl-blue" id="lbl-y">I1</label>
+                        <input type="text" id="inp-y" value="Y" class="dark-input center-text" maxlength="5">
+                    </div>
+                    <div class="input-col" id="col-z">
+                        <label class="lbl-blue" id="lbl-z">I0</label>
+                        <input type="text" id="inp-z" value="Z" class="dark-input center-text" maxlength="5">
+                    </div>
+                    <div class="input-col">
+                        <label class="lbl-blue">EN</label>
+                        <input type="text" id="inp-en" value="1" class="dark-input center-text" maxlength="1">
+                    </div>
+                </div>
+                
+                <div id="input-error" style="color: #ef4444; font-size: 0.85rem; font-weight: bold; text-align: center; margin-top: 10px; min-height: 18px;"></div>
+
+                <div class="divider"></div>
+
+                <div class="section-title">3. SELECT ACTIVE MINTERMS</div>
+                <div class="minterm-grid">
+                    <button class="minterm-btn" data-m="0">0</button>
+                    <button class="minterm-btn" data-m="1">1</button>
+                    <button class="minterm-btn" data-m="2">2</button>
+                    <button class="minterm-btn" data-m="3">3</button>
+                    <button class="minterm-btn" data-m="4">4</button>
+                    <button class="minterm-btn" data-m="5">5</button>
+                    <button class="minterm-btn" data-m="6">6</button>
+                    <button class="minterm-btn" data-m="7">7</button>
+                    
+                    <button class="minterm-btn" data-m="8" style="display:none;">8</button>
+                    <button class="minterm-btn" data-m="9" style="display:none;">9</button>
+                    <button class="minterm-btn" data-m="10" style="display:none;">10</button>
+                    <button class="minterm-btn" data-m="11" style="display:none;">11</button>
+                    <button class="minterm-btn" data-m="12" style="display:none;">12</button>
+                    <button class="minterm-btn" data-m="13" style="display:none;">13</button>
+                    <button class="minterm-btn" data-m="14" style="display:none;">14</button>
+                    <button class="minterm-btn" data-m="15" style="display:none;">15</button>
+                </div>
+
+                <div class="function-readout-box">
+                    <div class="readout-label">RESULTING FUNCTION (F):</div>
+                    <div id="function-text" class="func-highlight">F = 0</div>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+
+    <script src="bg-animation.js"></script>
+    <script src="visualizer.js"></script>
+</body>
+</html>
