@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Binary Decoder — Complete Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <header class="main-header">
+      <div class="container header-container">
+        <a href="landing.html" class="brand">
+          <span style="color:var(--accent-2); font-size:1.4rem;">⌁</span> Digital Binary Decoder
+        </a>
+        
+        <div class="nav-links">
+          <a href="index.html" class="active">Home</a>
+          <a href="showcase.html">Showcase</a>
+          <a href="quiz1.html">Quiz 1</a>
+          <a href="quiz2.html">Quiz 2</a>
+        </div>
+      </div>
+  </header>
+
+  <div class="page-layout">
+    <aside class="side-nav" id="sideNav">
+      <div class="side-nav-header">Contents</div>
+      <ul class="side-nav-list">
+        <li class="side-nav-item">
+          <a href="#what-is-decoder" class="side-nav-link" data-section="what-is-decoder">
+            <span class="side-nav-icon">-</span><span>What is a Decoder?</span>
+          </a>
+        </li>
+        <li class="side-nav-item">
+          <a href="#key-points" class="side-nav-link" data-section="key-points">
+            <span class="side-nav-icon">-</span><span>Key Points</span>
+          </a>
+        </li>
+        <li class="side-nav-item">
+          <a href="#boolean-algebra" class="side-nav-link" data-section="boolean-algebra">
+            <span class="side-nav-icon">-</span><span>Boolean Algebra - Laws</span>
+          </a>
+        </li>
+        <li class="side-nav-item">
+          <a href="#logic-gates" class="side-nav-link" data-section="logic-gates">
+            <span class="side-nav-icon">-</span><span>Logic Gates - Visual & Truth Table</span>
+          </a>
+        </li>
+        <li class="side-nav-item">
+          <a href="#demo-2to4" class="side-nav-link" data-section="demo-2to4">
+            <span class="side-nav-icon">-</span><span>2 to 4 Decoder Demo</span>
+          </a>
+        </li>
+        <li class="side-nav-item">
+          <a href="#demo-3to8" class="side-nav-link" data-section="demo-3to8">
+            <span class="side-nav-icon">-</span><span>3 to 8 Decoder Demo</span>
+          </a>
+        </li>
+        <li class="side-nav-item">
+          <a href="#sample-questions" class="side-nav-link" data-section="sample-questions">
+            <span class="side-nav-icon">-</span><span>Sample Questions</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <section class="hero">
+        <div class="container">
+          <span class="tag">Complete Guide</span>
+          <h1>Understand & Visualize Binary Decoders</h1>
+          <p>A comprehensive guide covering decoders, Boolean algebra, logic gates, and interactive demonstrations.</p>
+          <a class="btn" href="#what-is-decoder">Get Started</a>
+        </div>
+      </section>
+
+    <section id="what-is-decoder">
+        <div class="container">
+          <div class="panel">
+            <h2>What is a Decoder?</h2>
+            <p>
+              A <strong>decoder</strong> is a combinational logic circuit that converts binary information from <span class="mono">n</span> input lines to a maximum of <span class="mono">2ⁿ</span> unique output lines. For each unique input combination, exactly one output line is asserted (activated).
+            </p>
+            <p>
+              <strong>Example:</strong> A <span class="mono">3-to-8 decoder</span> has 3 input lines (<span class="mono">A, B, C</span>) and 8 output lines (<span class="mono">Y0</span> through <span class="mono">Y7</span>). Each of the 8 possible input combinations (000 through 111) activates exactly one output line.
+            </p>
+            
+            </figure>
+            </div>
+        </div>
+      </section>
+
+      <section id="key-points">
+        <div class="container">
+          <h2>Key Points about Decoders</h2>
+          <div class="key-points">
+            <ul>
+              <li><strong>Inputs and Outputs:</strong> A decoder with <span class="mono">n</span> inputs has <span class="mono">2ⁿ</span> outputs. Common configurations include 2-to-4, 3-to-8, and 4-to-16 decoders.</li>
+              <li><strong>One-Hot Output:</strong> Only one output is active (HIGH or LOW depending on the design) at any given time, corresponding to the binary input value.</li>
+              <li><strong>Enable Input:</strong> Most practical decoders include one or more enable (EN) inputs. When disabled, all outputs remain inactive regardless of input values.</li>
+              <li><strong>Active-High vs Active-Low:</strong>
+                <ul style="margin-top: 0.5rem;">
+                  <li><em>Active-High:</em> The selected output goes HIGH (1), others stay LOW (0)</li>
+                  <li><em>Active-Low:</em> The selected output goes LOW (0), others stay HIGH (1)</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="boolean-algebra">
+        <div class="container">
+          <h2>Boolean Algebra - Laws</h2>
+          <p class="muted">Boolean algebra forms the mathematical foundation for digital logic circuits including decoders.</p>
+          <div class="panel">
+            <table class="laws-table">
+              <thead><tr><th>Law Name</th><th>AND Form</th><th>OR Form</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Identity</strong></td><td class="mono">A · 1 = A</td><td class="mono">A + 0 = A</td></tr>
+                <tr><td><strong>Null / Dominance</strong></td><td class="mono">A · 0 = 0</td><td class="mono">A + 1 = 1</td></tr>
+                <tr><td><strong>Idempotent</strong></td><td class="mono">A · A = A</td><td class="mono">A + A = A</td></tr>
+                <tr><td><strong>Complement</strong></td><td class="mono">A · <span class="over">A</span> = 0</td><td class="mono">A + <span class="over">A</span> = 1</td></tr>
+                <tr><td><strong>Commutative</strong></td><td class="mono">A · B = B · A</td><td class="mono">A + B = B + A</td></tr>
+                <tr><td><strong>Associative</strong></td><td class="mono">(A · B) · C = A · (B · C)</td><td class="mono">(A + B) + C = A + (B + C)</td></tr>
+                <tr><td><strong>Distributive</strong></td><td class="mono">A · (B + C) = A·B + A·C</td><td class="mono">A + (B · C) = (A+B) · (A+C)</td></tr>
+                <tr><td><strong>De Morgan's</strong></td><td class="mono"><span class="over">A · B</span> = <span class="over">A</span> + <span class="over">B</span></td><td class="mono"><span class="over">A + B</span> = <span class="over">A</span> · <span class="over">B</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="logic-gates">
+        <div class="container">
+          <h2>Logic Gates - Visual & Truth Tables</h2>
+          <p class="muted">Logic gates are the building blocks of digital circuits.</p>
+          
+          <div class="gate-grid">
+            <div class="gate-card">
+              <div>
+                <svg class="gate-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="20" y1="50" x2="60" y2="50" stroke="var(--ink)" stroke-width="2.5"/>
+                  <line x1="20" y1="90" x2="60" y2="90" stroke="var(--ink)" stroke-width="2.5"/>
+                  <path d="M 60,30 L 60,110 L 100,110 Q 160,110 160,70 Q 160,30 100,30 Z" fill="var(--bg)" stroke="var(--accent-2)" stroke-width="2.5"/>
+                  <line x1="160" y1="70" x2="220" y2="70" stroke="var(--ink)" stroke-width="2.5"/>
+                  <text x="5" y="54" fill="var(--muted)" font-size="15" font-weight="600">A</text>
+                  <text x="5" y="94" fill="var(--muted)" font-size="15" font-weight="600">B</text>
+                  <text x="203" y="64" fill="var(--muted)" font-size="15" font-weight="600">Y</text>
+                </svg>
+              </div>
+              <div>
+                <div class="gate-title">AND Gate</div>
+                <div class="expr mono">Y = A · B</div>
+                <table>
+                  <thead><tr><th>A</th><th>B</th><th>Y</th></tr></thead>
+                  <tbody>
+                    <tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="gate-card">
+              <div>
+                <svg class="gate-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="20" y1="50" x2="55" y2="50" stroke="var(--ink)" stroke-width="2.5"/>
+                  <line x1="20" y1="90" x2="55" y2="90" stroke="var(--ink)" stroke-width="2.5"/>
+                  <path d="M 40,30 Q 100,30 160,70 Q 100,110 40,110 Q 70,70 40,30 Z" fill="var(--bg)" stroke="var(--accent-2)" stroke-width="2.5"/>
+                  <line x1="160" y1="70" x2="220" y2="70" stroke="var(--ink)" stroke-width="2.5"/>
+                  <text x="5" y="54" fill="var(--muted)" font-size="15" font-weight="600">A</text>
+                  <text x="5" y="94" fill="var(--muted)" font-size="15" font-weight="600">B</text>
+                  <text x="203" y="64" fill="var(--muted)" font-size="15" font-weight="600">Y</text>
+                </svg>
+              </div>
+              <div>
+                <div class="gate-title">OR Gate</div>
+                <div class="expr mono">Y = A + B</div>
+                <table>
+                  <thead><tr><th>A</th><th>B</th><th>Y</th></tr></thead>
+                  <tbody>
+                    <tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="gate-card">
+              <div>
+                <svg class="gate-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="20" y1="70" x2="60" y2="70" stroke="var(--ink)" stroke-width="2.5"/>
+                  <path d="M 60,40 L 60,100 L 140,70 Z" fill="var(--bg)" stroke="var(--accent-2)" stroke-width="2.5"/>
+                  <circle cx="148" cy="70" r="8" fill="var(--bg)" stroke="var(--accent-2)" stroke-width="2.5"/>
+                  <line x1="156" y1="70" x2="220" y2="70" stroke="var(--ink)" stroke-width="2.5"/>
+                  <text x="5" y="74" fill="var(--muted)" font-size="15" font-weight="600">A</text>
+                  <text x="203" y="64" fill="var(--muted)" font-size="15" font-weight="600">Y</text>
+                </svg>
+              </div>
+              <div>
+                <div class="gate-title">NOT Gate</div>
+                <div class="expr mono">Y = <span class="over">A</span></div>
+                <table>
+                  <thead><tr><th>A</th><th>Y</th></tr></thead>
+                  <tbody>
+                    <tr><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="gate-card">
+              <div>
+                <svg class="gate-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="20" y1="50" x2="60" y2="50" stroke="var(--ink)" stroke-width="2.5"/>
+                  <line x1="20" y1="90" x2="60" y2="90" stroke="var(--ink)" stroke-width="2.5"/>
+                  <path d="M 60,30 L 60,110 L 100,110 Q 160,110 160,70 Q 160,30 100,30 Z" fill="var(--bg)" stroke="var(--accent-2)" stroke-width="2.5"/>
+                  <circle cx="168" cy="70" r="8" fill="var(--bg)" stroke="var(--accent-2)" stroke-width="2.5"/>
+                  <line x1="176" y1="70" x2="220" y2="70" stroke="var(--ink)" stroke-width="2.5"/>
+                  <text x="5" y="54" fill="var(--muted)" font-size="15" font-weight="600">A</text>
+                  <text x="5" y="94" fill="var(--muted)" font-size="15" font-weight="600">B</text>
+                  <text x="203" y="64" fill="var(--muted)" font-size="15" font-weight="600">Y</text>
+                </svg>
+              </div>
+              <div>
+                <div class="gate-title">NAND Gate</div>
+                <div class="expr mono">Y = <span class="over">A · B</span></div>
+                <table>
+                  <thead><tr><th>A</th><th>B</th><th>Y</th></tr></thead>
+                  <tbody>
+                    <tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="gate-card">
+              <div>
+                <svg class="gate-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="20" y1="50" x2="55" y2="50" stroke="var(--ink)" stroke-width="2.5"/>
+                  <line x1="20" y1="90" x2="55" y2="90" stroke="var(--ink)" stroke-width="2.5"/>
+                  <path d="M 40,30 Q 100,30 160,70 Q 100,110 40,110 Q 70,70 40,30 Z" fill="var(--bg)" stroke="var(--accent-2)" stroke-width="2.5"/>
+                  <circle cx="168" cy="70" r="8" fill="var(--bg)" stroke="var(--accent-2)" stroke-width="2.5"/>
+                  <line x1="176" y1="70" x2="220" y2="70" stroke="var(--ink)" stroke-width="2.5"/>
+                  <text x="5" y="54" fill="var(--muted)" font-size="15" font-weight="600">A</text>
+                  <text x="5" y="94" fill="var(--muted)" font-size="15" font-weight="600">B</text>
+                  <text x="203" y="64" fill="var(--muted)" font-size="15" font-weight="600">Y</text>
+                </svg>
+              </div>
+              <div>
+                <div class="gate-title">NOR Gate</div>
+                <div class="expr mono">Y = <span class="over">A + B</span></div>
+                <table>
+                  <thead><tr><th>A</th><th>B</th><th>Y</th></tr></thead>
+                  <tbody>
+                    <tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="gate-card">
+              <div>
+                <svg class="gate-svg" viewBox="0 0 240 140" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="15" y1="50" x2="41" y2="50" stroke="var(--ink)" stroke-width="2.5"/>
+                  <line x1="15" y1="90" x2="41" y2="90" stroke="var(--ink)" stroke-width="2.5"/>
+                  <path d="M 32,30 Q 62,70 32,110" fill="none" stroke="var(--muted)" stroke-width="2.5"/>
+                  <path d="M 45,30 Q 105,30 165,70 Q 105,110 45,110 Q 75,70 45,30 Z" fill="var(--bg)" stroke="var(--accent-2)" stroke-width="2.5"/>
+                  <line x1="165" y1="70" x2="220" y2="70" stroke="var(--ink)" stroke-width="2.5"/>
+                  <text x="5" y="54" fill="var(--muted)" font-size="15" font-weight="600">A</text>
+                  <text x="5" y="94" fill="var(--muted)" font-size="15" font-weight="600">B</text>
+                  <text x="203" y="64" fill="var(--muted)" font-size="15" font-weight="600">Y</text>
+                </svg>
+              </div>
+              <div>
+                <div class="gate-title">XOR Gate</div>
+                <div class="expr mono">Y = A ⊕ B</div>
+                <table>
+                  <thead><tr><th>A</th><th>B</th><th>Y</th></tr></thead>
+                  <tbody>
+                    <tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="demo-2to4">
+        <div class="container">
+          <h2>Interactive 2-to-4 Decoder with Enable</h2>
+          <div class="panel two-col">
+            <div>
+              <div class="controls">
+                <div class="seg"><strong>Enable (EN):</strong>
+                  <label><input type="radio" name="en24" value="1" checked> ON (1)</label>
+                  <label><input type="radio" name="en24" value="0"> OFF (0)</label>
+                </div>
+              </div>
+              <div class="controls" style="margin-top: 10px;">
+                <div class="seg bits">
+                  <div class="bit"><label class="muted">A (MSB)</label><button id="bitA24" class="toggle" data-value="0">0</button></div>
+                  <div class="bit"><label class="muted">B (LSB)</label><button id="bitB24" class="toggle" data-value="0">0</button></div>
+                </div>
+              </div>
+              <div class="controls" style="margin-top: 10px;">
+                <div class="seg"><strong>AB =</strong> <span id="ab24" class="mono" style="margin-left:.5rem">00</span></div>
+                <div class="seg" style="margin-top: 10px;"><strong>Y0..Y3 =</strong> <span id="ystr24" class="mono outstring" style="margin-left:.5rem">1000</span></div>
+              </div>
+            </div>
+            <div class="panel" style="background:rgba(12, 22, 43, 0.8)">
+              <table aria-label="2 to 4 decoder with enable">
+                <thead><tr><th class="mono">EN</th><th class="mono">A</th><th class="mono">B</th><th class="mono">Y0</th><th class="mono">Y1</th><th class="mono">Y2</th><th class="mono">Y3</th></tr></thead>
+                <tbody id="tbody24"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="demo-3to8">
+        <div class="container">
+          <h2>Interactive 3-to-8 Decoder</h2>
+          <div class="panel two-col">
+            <div>
+              <div class="controls">
+                <div class="seg"><strong>Polarity:</strong>
+                  <label><input type="radio" name="pol" value="high" checked> Active-High</label>
+                  <label><input type="radio" name="pol" value="low"> Active-Low</label>
+                </div>
+              </div>
+              <div class="controls" style="margin-top: 10px;">
+                <div class="seg bits">
+                  <div class="bit"><label class="muted">A (MSB)</label><button id="bitA" class="toggle" data-value="0">0</button></div>
+                  <div class="bit"><label class="muted">B</label><button id="bitB" class="toggle" data-value="0">0</button></div>
+                  <div class="bit"><label class="muted">C (LSB)</label><button id="bitC" class="toggle" data-value="0">0</button></div>
+                </div>
+              </div>
+              <div class="controls" style="margin-top: 10px;">
+                <div class="seg"><strong>ABC =</strong> <span id="abc" class="mono" style="margin-left:.5rem">000</span></div>
+                <div class="seg" style="margin-top: 10px;"><strong>Outputs =</strong> <span id="ystr" class="mono outstring" style="margin-left:.5rem">10000000</span></div>
+              </div>
+            </div>
+            <div class="panel" style="background:rgba(12, 22, 43, 0.8)">
+              <table aria-label="3 to 8 decoder function table">
+                <thead><tr><th class="mono">A</th><th class="mono">B</th><th class="mono">C</th><th class="mono">Y0</th><th class="mono">Y1</th><th class="mono">Y2</th><th class="mono">Y3</th><th class="mono">Y4</th><th class="mono">Y5</th><th class="mono">Y6</th><th class="mono">Y7</th></tr></thead>
+                <tbody id="tbody38"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+<section id="sample-questions">
+        <div class="container">
+          <h2>Sample Questions</h2>
+          <p class="muted">Test your understanding of decoders with these practice questions.</p>
+          <div class="grid" style="grid-template-columns:1fr;gap:16px;">
+            
+            <div class="q-card" id="q24">
+              <div><strong>Q1 : 2-to-4 Decoder (Active-High)</strong></div>
+              <div class="muted">Given <span class="mono">AB = 10</span> and <span class="mono">EN = 1</span>, which output is asserted?</div>
+              <div class="choices">
+                <label class="pill"><input type="radio" name="q24" value="Y0">Y0</label>
+                <label class="pill"><input type="radio" name="q24" value="Y1">Y1</label>
+                <label class="pill"><input type="radio" name="q24" value="Y2">Y2</label>
+                <label class="pill"><input type="radio" name="q24" value="Y3">Y3</label>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center; margin-top:10px;">
+                <button class="btn" onclick="checkQ('q24','Y2')">Check Answer</button>
+                <span class="result" id="q24r"></span>
+              </div>
+            </div>
+
+            <div class="q-card" id="q38">
+              <div><strong>Q2 : 3-to-8 Decoder (Active-High)</strong></div>
+              <div class="muted">Given <span class="mono">ABC = 101</span> and <span class="mono">EN = 1</span>, which output is asserted?</div>
+              <div class="choices">
+                <label class="pill"><input type="radio" name="q38" value="Y0">Y0</label>
+                <label class="pill"><input type="radio" name="q38" value="Y1">Y1</label>
+                <label class="pill"><input type="radio" name="q38" value="Y2">Y2</label>
+                <label class="pill"><input type="radio" name="q38" value="Y3">Y3</label>
+                <label class="pill"><input type="radio" name="q38" value="Y4">Y4</label>
+                <label class="pill"><input type="radio" name="q38" value="Y5">Y5</label>
+                <label class="pill"><input type="radio" name="q38" value="Y6">Y6</label>
+                <label class="pill"><input type="radio" name="q38" value="Y7">Y7</label>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center; margin-top:10px;">
+                <button class="btn" onclick="checkQ('q38','Y5')">Check Answer</button>
+                <span class="result" id="q38r"></span>
+              </div>
+            </div>
+
+            <div class="q-card" id="q3">
+              <div><strong>Q3 : Active-Low Output</strong></div>
+              <div class="muted">In a 3-to-8 decoder with active-low outputs, if <span class="mono">ABC = 011</span>, what is the state of output Y3?</div>
+              <div class="choices">
+                <label class="pill"><input type="radio" name="q3" value="0">0 (LOW)</label>
+                <label class="pill"><input type="radio" name="q3" value="1">1 (HIGH)</label>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center; margin-top:10px;">
+                <button class="btn" onclick="checkQ('q3','0')">Check Answer</button>
+                <span class="result" id="q3r"></span>
+              </div>
+            </div>
+
+            <div class="q-card" id="q4">
+              <div><strong>Q4 : Number of Outputs</strong></div>
+              <div class="muted">A decoder has 4 input lines. How many output lines does it have?</div>
+              <div class="choices">
+                <label class="pill"><input type="radio" name="q4" value="4">4</label>
+                <label class="pill"><input type="radio" name="q4" value="8">8</label>
+                <label class="pill"><input type="radio" name="q4" value="16">16</label>
+                <label class="pill"><input type="radio" name="q4" value="32">32</label>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center; margin-top:10px;">
+                <button class="btn" onclick="checkQ('q4','16')">Check Answer</button>
+                <span class="result" id="q4r"></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="bg-animation.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
