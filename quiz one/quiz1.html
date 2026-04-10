@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Binary Decoder — Quiz 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="quiz1.css">
+</head>
+<body>
+
+  <div id="canvas-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="landing.html" class="brand">
+          <span style="color:var(--accent-2); font-size:1.4rem;">⌁</span> Digital Binary Decoder
+        </a>
+        
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="showcase.html">Showcase</a>
+          <a href="quiz1.html" class="active">Quiz 1</a>
+          <a href="quiz2.html">Quiz 2</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-header">
+        <h1>Binary Decoder Quiz</h1>
+        <p>Practice 2-to-4, 3-to-8, and 4-to-16 decoders.</p>
+    </div>
+
+    <section class="layout">
+      <section class="panel">
+        <h3>
+          Diagram
+          <details class="settings" id="settings">
+            <summary>⚙️ Settings</summary>
+            <div class="settings-body">
+              <div class="settings-row">
+                <label for="mode">Decoder Size</label>
+                <select id="mode">
+                  <option value="mixed" selected>Mixed (Random)</option>
+                  <option value="2">2-to-4 only</option>
+                  <option value="3">3-to-8 only</option>
+                  <option value="4">4-to-16 only</option> 
+                </select>
+              </div>
+              </div>
+          </details>
+        </h3>
+        <div class="content diagram-wrap">
+          <div id="svgHost" class="diagram" role="img" aria-label="Decoder diagram"></div>
+        </div>
+      </section>
+
+      <section class="panel qa">
+        <h3>Question</h3>
+        <div class="content">
+          
+          <p id="prompt" class="prompt">Press "New Question".</p>
+          <div id="inputZone"></div>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;">
+            <button id="checkBtn" class="btn">Check Answer</button>
+            <button id="nextBtn" class="btn secondary">Next Question</button>
+          </div>
+
+          <div id="feedback"></div>
+
+          <details id="ttDetails" class="table">
+            <summary>▶ Show Truth Table</summary>
+            <div class="tt-body" id="ttWrap"></div>
+          </details>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <footer>
+    <span class="muted">Test your knowledge on standard decoder outputs.</span>
+  </footer>
+
+  <script src="quiz1.js"></script>
+  <script src="bg-animation.js"></script>
+</body>
+</html>
