@@ -1,0 +1,135 @@
+/* --- LAYOUT & HEADER --- */
+.back-link { color: #9aa4b2; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.2s; }
+.back-link:hover { color: #fff; }
+
+.solver-header { text-align: center; margin-bottom: 40px; }
+.solver-header h1 { font-size: 2.2rem; margin-bottom: 5px; display: flex; justify-content: center; align-items: center; gap: 10px; }
+.info-icon { font-size: 1.5rem; color: #9aa4b2; cursor: pointer; font-weight: 400; }
+
+/* --- HOVER TOOLTIP STYLING --- */
+.info-tooltip-wrapper { position: relative; display: inline-flex; align-items: center; }
+.info-tooltip-content {
+    visibility: hidden; opacity: 0; position: absolute; top: 150%; left: 50%;
+    transform: translateX(-50%) translateY(10px); width: 480px;
+    background: #1e293b; color: #e5e7eb; text-align: left; border-radius: 12px;
+    padding: 24px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1); z-index: 9999;
+    font-size: 0.9rem; font-family: 'Montserrat', sans-serif; font-weight: 500;
+    line-height: 1.6; transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+.info-tooltip-content::before {
+    content: ""; position: absolute; bottom: 100%; left: 50%;
+    margin-left: -10px; border-width: 10px; border-style: solid;
+    border-color: transparent transparent #1e293b transparent;
+}
+.info-tooltip-wrapper:hover .info-tooltip-content { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+.info-tooltip-content h4 { margin: 0 0 10px 0; color: #fff; font-size: 1.05rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; }
+.info-tooltip-content ul { margin: 0 0 20px 0; padding-left: 20px; }
+.info-tooltip-content li { margin-bottom: 6px; color: #cbd5e1; }
+.info-tooltip-content p {
+    margin: 0; font-family: monospace; color: #4facfe; font-size: 1.1rem;
+    font-weight: 700; background: rgba(0,0,0,0.3); padding: 10px;
+    border-radius: 6px; border: 1px solid rgba(79, 172, 254, 0.2);
+}
+
+.solver-header p { color: #9aa4b2; font-size: 1rem; }
+
+.solver-layout { display: grid; gap: 30px; align-items: stretch; }
+@media (min-width: 950px) { .solver-layout { grid-template-columns: 1fr 1.2fr; } }
+
+/* --- PANELS --- */
+.solver-panel {
+    background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px; padding: 30px; backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column;
+}
+.diagram-panel { justify-content: center; align-items: center; min-height: 400px; }
+
+/* --- CONTROLS --- */
+.section-title { font-size: 0.85rem; font-weight: 800; color: #fff; letter-spacing: 1px; margin-bottom: 15px; }
+.divider { height: 1px; background: rgba(255,255,255,0.1); margin: 25px 0; }
+.dropdown-row { display: flex; justify-content: space-between; align-items: center; }
+
+/* Dynamic Horizontal Flex Grid for Inputs */
+.input-grid-horizontal { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+.input-col { flex: 1; min-width: 60px; max-width: 100px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.lbl-blue { color: #94a3b8; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; }
+.center-text { text-align: center; font-size: 1.1rem !important; }
+
+.dark-input {
+    width: 100%; box-sizing: border-box; background: #0f172a; border: 1px solid rgba(255,255,255,0.05);
+    padding: 12px; border-radius: 8px; color: #e5e7eb; font-family: monospace; font-weight: bold;
+    transition: 0.2s; outline: none;
+}
+.dark-input:focus { border-color: #4facfe; box-shadow: 0 0 10px rgba(79, 172, 254, 0.2); }
+
+/* Flexible Minterm Grid */
+.minterm-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+.minterm-btn {
+    background: #111827; color: #e5e7eb; border: 1px solid rgba(255,255,255,0.05);
+    padding: 12px 0; border-radius: 6px; font-weight: 700; font-size: 1.1rem;
+    cursor: pointer; transition: 0.2s;
+}
+.minterm-btn:hover { background: #1e293b; }
+
+/* Active Minterm Bright Green State */
+.minterm-btn.active {
+    background: #22c55e; color: #052814; border-color: #22c55e;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+/* Resulting Function Box */
+.function-readout-box {
+    background: #111827; border-radius: 12px; padding: 25px; margin-top: 30px;
+    text-align: center; border: 1px solid rgba(255,255,255,0.05); word-wrap: break-word;
+}
+.readout-label { color: #94a3b8; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+.func-highlight { color: #fff; font-weight: bold; font-size: 1.3rem; font-family: monospace; letter-spacing: 1px; line-height: 1.6;}
+/* =========================================
+   📱 MOBILE RESPONSIVENESS FIX
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Shrink panel padding so it fits on screen */
+    .panel, .bottom-panel .content {
+        padding: 15px !important;
+    }
+    
+    /* 2. Allow the diagram container to adjust its height */
+    .diagram-wrap, .diagram-panel {
+        height: auto !important; 
+        min-height: 250px !important;
+        padding: 10px 0 !important;
+    }
+    
+    /* 3. Force the SVG diagram to shrink perfectly to the screen width */
+    .diagram svg, #diagram-container svg, #svgHost svg {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* 4. Scale down inputs and answer boxes */
+    .answer-box {
+        font-size: 1.1rem !important;
+        height: auto !important;
+        padding: 15px !important;
+    }
+    .rand-row {
+        padding: 8px 15px !important;
+    }
+
+    /* 5. Stack action buttons vertically on small screens */
+    .action-buttons {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    .btn {
+        width: 100% !important;
+        padding: 12px !important;
+        margin: 0 !important;
+    }
+    
+    /* 6. Shrink title text */
+    .solver-header h1, .page-header h2 {
+        font-size: 1.5rem !important;
+    }
+}
