@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter — Digital Binary Decoder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 1. RESET & SETUP */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* No scrolling */
+            
+            /* --- CRITICAL FIX --- */
+            /* Must be transparent so the video behind it is visible */
+            background-color: transparent; 
+            
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* 2. FULL SCREEN VIDEO BACKGROUND */
+        #bg-video {
+            position: fixed;
+            top: 50%; 
+            left: 50%;
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto; 
+            height: auto;
+            transform: translate(-50%, -50%); /* Centers the video */
+            z-index: -1; /* Sends video to the back */
+            object-fit: cover; /* Ensures video fills screen without black bars */
+        }
+
+        /* 3. INVISIBLE CLICK AREA (Over the video button) */
+        .decoder-click-area {
+            position: absolute;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%); 
+
+            /* Fluid size: scales with viewport so it fits on any screen */
+            width: min(450px, 80vw); 
+            height: min(200px, 25vw); 
+
+            background-color: rgba(255, 0, 0, 0.0); 
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 40px;
+        }
+
+        /* 4. BOTTOM TEXT ("Click to Initialize") */
+        .bottom-text {
+            position: absolute;
+            bottom: max(20px, 5vh); /* Never gets too close to edge */
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+            text-decoration: none;
+
+            color: #4facfe;
+            font-size: clamp(0.75rem, 3vw, 1.2rem); /* Scales with screen width */
+            font-weight: 700;
+            letter-spacing: clamp(1px, 1vw, 4px);
+            text-transform: uppercase;
+            opacity: 0.8;
+
+            animation: pulse 2s infinite;
+            text-shadow: 0 0 15px rgba(79, 172, 254, 0.6);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .bottom-text:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            text-shadow: 0 0 25px rgba(79, 172, 254, 1);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="decoder-button.mp4" type="video/mp4">
+    </video>
+
+    <a href="index.html" class="decoder-click-area" title="Enter"></a>
+
+    <a href="index.html" class="bottom-text">Click to Initialize</a>
+
+</body>
+</html>
