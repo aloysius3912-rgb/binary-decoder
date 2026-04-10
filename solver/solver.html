@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Logic Solver — Digital Binary Decoder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="solver.css">
+</head>
+<body>
+
+    <div id="canvas-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+
+    <header class="main-header">
+        <div class="container header-container">
+          <a href="landing.html" class="brand">
+            <span style="color:var(--accent-2); font-size:1.4rem;">⌁</span> Digital Binary Decoder
+          </a>
+          
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="showcase.html" class="active">Showcase</a>
+            <a href="quiz1.html">Quiz 1</a>
+            <a href="quiz2.html">Quiz 2</a>
+          </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 60px;">
+        
+        <div style="margin-bottom: 20px;">
+            <a href="showcase.html" style="color: #9aa4b2; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.2s;">
+                ← Back to Showcase
+            </a>
+        </div>
+
+       <div class="solver-header">
+            <h1>Decoder Logic Solver 
+                <div class="info-tooltip-wrapper">
+                    <span class="info-icon">ⓘ</span>
+                    <div class="info-tooltip-content">
+                        <h4>How to use:</h4>
+                        <ul>
+                            <li>Choose the desired decoder size and output type (Active High/Low).</li>
+                            <li>Fill in the boolean equations for the inputs.</li>
+                            <li>Click "SOLVE LOGIC" to generate the truth table.</li>
+                            <li><b>Click the decoder diagram</b> to view its standard Function Table.</li>
+                        </ul>
+                        
+                        <h4>Additional Information:</h4>
+                        <ul>
+                            <li>Variables supported range from A to Z.</li>
+                            <li>Parentheses <b>(</b> and <b>)</b> can be used for priority.</li>
+                        </ul>
+                        
+                        <h4>Sample input:</h4>
+                        <p>X ⊕ (Y * Z)'</p>
+                    </div>
+                </div>
+            </h1>
+            <p>Enter boolean equations to simulate decoder behavior.</p>
+        </div>
+
+        <div class="solver-layout">
+            
+            <div class="solver-panel diagram-panel" id="diagram-panel" title="Click to view Function Table">
+                <div id="diagram-container" style="width: 100%; height: 100%;">
+                    </div>
+                <p style="text-align:center; color:#64748b; font-size:0.8rem; margin-top:10px;">Click diagram to view Function Table</p>
+            </div>
+
+            <div class="solver-panel controls-panel">
+                
+                <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                    <div class="dropdown-row" style="flex: 1; margin-bottom: 0;">
+                        <label style="display:block; margin-bottom:5px;">Decoder Size:</label>
+                        <select id="decoder-size" style="width: 100%;">
+                            <option value="2x4">2-to-4 Decoder</option>
+                            <option value="3x8" selected>3-to-8 Decoder</option>
+                            <option value="4x16">4-to-16 Decoder</option>
+                        </select>
+                    </div>
+                    <div class="dropdown-row" style="flex: 1; margin-bottom: 0;">
+                        <label style="display:block; margin-bottom:5px;">Output Type:</label>
+                        <select id="output-type" style="width: 100%;">
+                            <option value="AH" selected>Active High (AH)</option>
+                            <option value="AL">Active Low (AL)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+                <div class="section-title">INPUT EQUATIONS</div>
+
+                <div class="input-grid">
+                    <div class="input-row" id="row-input-w" style="display: none;">
+                        <label class="lbl-blue">I3:</label>
+                        <input type="text" id="input-w" value="W" class="dark-input">
+                    </div>
+                    <div class="input-row">
+                        <label class="lbl-blue" id="lbl-input-1">I2:</label>
+                        <input type="text" id="input-x" value="X" class="dark-input">
+                    </div>
+                    <div class="input-row">
+                        <label class="lbl-blue" id="lbl-input-2">I1:</label>
+                        <input type="text" id="input-y" value="Y" class="dark-input">
+                    </div>
+                    <div class="input-row" id="row-input-z">
+                        <label class="lbl-blue">I0:</label>
+                        <input type="text" id="input-z" value="Z" class="dark-input">
+                    </div>
+                    <div class="input-row">
+                        <label class="lbl-blue">EN:</label>
+                        <input type="text" id="input-en" value="1" class="dark-input">
+                    </div>
+                </div>
+
+                <div class="logic-buttons">
+                    <button class="logic-btn" data-char="+">+ (OR)</button>
+                    <button class="logic-btn" data-char="*">* (AND)</button>
+                    <button class="logic-btn" data-char="⊕">⊕ (XOR)</button>
+                    <button class="logic-btn" data-char="'">' (NOT)</button>
+                </div>
+
+                <button class="solve-action-btn" id="solve-btn">SOLVE LOGIC →</button>
+                
+            </div>
+        </div>
+
+        <div id="results-panel" class="solver-panel" style="display: none; margin-top: 30px; overflow-x: auto;">
+            <div class="section-title" style="margin-bottom: 20px;">TRUTH TABLE OUTPUT</div>
+            <table id="truth-table" aria-label="Generated truth table">
+            </table>
+        </div>
+
+    </main>
+
+    <div id="function-table-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h2 id="modal-title" style="margin-bottom: 20px; color: #4facfe;">Function Table</h2>
+            <div style="overflow-x: auto;">
+                <table id="modal-table" class="tt-table" style="width: 100%; border-collapse: collapse; text-align: center;">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="bg-animation.js"></script>
+    <script src="solver.js"></script>
+</body>
+</html>
