@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Binary Decoder — Quiz 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="quiz2.css">
+</head>
+<body>
+
+  <div id="canvas-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="landing.html" class="brand">
+          <span style="color:var(--accent-2); font-size:1.4rem;">⌁</span> Digital Binary Decoder
+        </a>
+        
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="showcase.html">Showcase</a>
+          <a href="quiz1.html">Quiz 1</a>
+          <a href="quiz2.html" class="active">Quiz 2</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-header" style="padding-bottom: 0;">
+        <h2 style="font-size: 1.8rem; color: #fff; margin-bottom: 30px;">Analyze the circuit below...</h2>
+    </div>
+
+    <section class="layout">
+      
+      <section class="panel top-panel">
+        <h3>
+          Diagram
+          <details class="settings" id="settings">
+            <summary>⚙️ Settings</summary>
+            <div class="settings-body">
+              <div class="settings-row">
+                <label for="mode">Decoder Size</label>
+                <select id="mode">
+                  <option value="mixed" selected>Mixed (Random)</option>
+                  <option value="2">2-to-4 only</option>
+                  <option value="3">3-to-8 only</option>
+                  <option value="4">4-to-16 only</option>
+                </select>
+              </div>
+              <div class="settings-row" style="margin-top: 15px;">
+                <label for="logic-type">Logic Type</label>
+                <select id="logic-type">
+                  <option value="high" selected>Active High (OR)</option>
+                  <option value="low">Active Low (NAND)</option>
+                </select>
+              </div>
+            </div>
+          </details>
+        </h3>
+        <div class="content diagram-wrap" style="padding: 0;">
+          <div id="svgHost" class="diagram" role="img" aria-label="Circuit diagram"></div>
+        </div>
+      </section>
+
+      <section class="panel bottom-panel qa">
+        
+        <div class="content" style="padding: 40px 30px;">
+          
+          <div class="section-title">1. INPUTS (RANDOMIZED)</div>
+          <div id="randomized-inputs-container" class="rand-inputs">
+             </div>
+
+          <div class="divider" style="height: 1px; background: rgba(255,255,255,0.05); margin: 30px 0;"></div>
+
+          <div class="section-title">2. DETERMINE THE LOGIC FUNCTION</div>
+          <p class="prompt" style="font-size: 0.95rem; color: #9aa4b2; margin-bottom: 15px;">
+            Look at the connected wires on the diagram above. Write the boolean expression for <strong>F</strong>.<br>
+            Format: Use ' for NOT. Example: <strong>X'YZ + XY'Z</strong>
+          </p>
+          
+          <div id="inputZone" style="margin: 20px 0;">
+             <input type="text" id="userAns" class="answer-box" placeholder="F = . . ." autocomplete="off" spellcheck="false">
+             
+             <div class="logic-buttons" id="helper-btns" style="margin-top: 15px;">
+             </div>
+          </div>
+
+          <div class="action-buttons">
+            <button id="nextBtn" class="btn dark-btn">NEXT QUESTION</button>
+            <button id="checkBtn" class="btn blue-btn">CHECK ANSWER</button>
+          </div>
+
+          <div id="solution-container" class="feedback" style="display: none; margin-top: 20px;"></div>
+
+          <div style="margin-top: 40px;">
+              <details id="ttDetails" class="table full-width">
+                <summary>▶ Show Truth Table</summary>
+                <div class="tt-body" id="tt-content"></div>
+              </details>
+          </div>
+
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <script src="quiz2.js"></script>
+  <script src="bg-animation.js"></script>
+</body>
+</html>
