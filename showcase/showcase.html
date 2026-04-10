@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showcase — Binary Decoder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="showcase.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+          <nav>
+            <a href="landing.html" class="brand">
+              <span style="color:var(--accent-2); font-size:1.4rem;">⌁</span> Digital Binary Decoder
+            </a>
+            
+            <div class="nav-links">
+              <a href="index.html">Home</a>
+              <a href="showcase.html" class="active">Showcase</a>
+              <a href="quiz1.html">Quiz 1</a>
+              <a href="quiz2.html">Quiz 2</a>
+            </div>
+          </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Project Showcase</h1>
+        <p>Advanced Tools & Visualizers</p>
+    </div>
+
+    <div class="showcase-grid">
+        
+        <article class="card">
+            <div class="icon" style="color: #4facfe;"></div>
+            <h2>Decoder Logic Solver</h2>
+            <p>
+                A theoretical tool to solve boolean equations. 
+                Input logic for <strong>A, B, C</strong> (e.g. X + Y) and see the 
+                resulting Truth Table and active outputs.
+            </p>
+            <a href="solver.html" class="launch-btn">Launch Solver</a>
+        </article>
+
+        <article class="card accent-green">
+            <div class="icon" style="color: #22c55e;"></div>
+            <h2>Logic Function with Decoder</h2>
+            <p>
+                Design your own decoder circuit. 
+                Manually select active minterms (0-7) and define variables 
+                to generate a professional "Quiz 2" style diagram.
+            </p>
+            <a href="visualizer.html" class="launch-btn">Launch Tool</a>
+        </article>
+
+    </div>
+
+    <script src="showcase.js"></script>
+<script src="bg-animation.js"></script>
+</body>
+</html>
