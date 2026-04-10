@@ -1,0 +1,260 @@
+/* --- SHARED THEME --- */
+:root { 
+  --bg: #0b1220; 
+  --panel: rgba(15, 23, 42, 0.7); /* Glass effect */
+  --ink: #e5e7eb; 
+  --muted: #9aa4b2; 
+  --accent: #22c55e; /* Green Accent */
+  --accent-2: #4facfe; /* Blue Accent */
+  --border: rgba(255,255,255,.08); 
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body { margin: 0; background: transparent; color: var(--ink); font: 16px/1.6 'Montserrat', system-ui, sans-serif; }
+a { color: var(--ink); text-decoration: none; transition: 0.2s; }
+
+.container { width: min(1200px, 94vw); margin: 0 auto; }
+
+/* --- HEADER & NAVIGATION --- */
+header { 
+  position: sticky; top: 0; z-index: 100; 
+  background: linear-gradient(180deg,#0b1220 30%,rgba(11,18,32,.95)); 
+  backdrop-filter: saturate(120%) blur(6px); 
+  border-bottom: 1px solid var(--border); 
+}
+
+nav { display: flex; gap: 20px; align-items: center; justify-content: space-between; padding: 1rem 0; }
+
+.brand { font-weight: 800; font-size: 1.4rem; color: #fff; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+.brand:hover { opacity: 0.9; }
+
+.nav-links { display: flex; gap: 15px; align-items: center; }
+.nav-links a { padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.95rem; font-weight: 500; color: var(--muted); }
+.nav-links a:hover { color: #fff; }
+
+.nav-links a.active { 
+    background-color: #1e3a8a; 
+    color: #60a5fa; 
+    border: 1px solid #2563eb; 
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
+}
+
+/* --- PAGE LAYOUT --- */
+.page-header { padding: 40px 20px 20px; text-align: center; }
+.page-header h1 { margin: 0 0 10px; font-size: 2rem; color: #fff; }
+.page-header p { color: var(--muted); margin: 0; }
+
+.layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; padding: 20px 0 60px; align-items: start; }
+@media (max-width: 1100px) { .layout { grid-template-columns: 1fr; } }
+
+.panel { 
+    background: var(--panel); 
+    border: 1px solid var(--border); 
+    border-radius: 16px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(12px); 
+}
+.panel h3 { 
+  margin: 0; padding: 16px 20px; border-bottom: 1px solid var(--border); 
+  font-size: 1.1rem; display: flex; align-items: center; justify-content: space-between; 
+  color: #fff; background: rgba(255,255,255,0.02); 
+}
+.panel .content { padding: 20px; }
+
+/* --- DIAGRAM CONTAINER --- */
+.diagram-wrap { 
+  padding: 20px; min-height: 500px; 
+  display: flex; align-items: center; justify-content: center; 
+  background: rgba(11, 18, 32, 0.5); border-radius: 0 0 16px 16px; 
+}
+.diagram { width: 100%; height: 100%; }
+
+/* --- SETTINGS DROPDOWN --- */
+details.settings { margin-left: auto; position: relative; }
+details.settings summary { 
+  list-style: none; cursor: pointer; border: 1px solid var(--border); 
+  border-radius: 8px; padding: 6px 12px; background: #1e293b; 
+  color: var(--ink); font-size: 0.85rem; font-weight: 500; 
+}
+.settings-body { 
+  position: absolute; right: 0; top: 120%; z-index: 20; 
+  background: #1e293b; border: 1px solid var(--border); 
+  border-radius: 8px; padding: 16px; display: grid; gap: 12px; 
+  min-width: 220px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+}
+.settings-row { display: flex; gap: 8px; flex-direction: column; }
+.settings-row label { font-size: 0.8rem; color: var(--muted); font-weight: bold; text-transform: uppercase; }
+select { 
+  background: #0b1220; color: var(--ink); border: 1px solid var(--border); 
+  border-radius: 8px; padding: 8px 12px; font-size: 14px; 
+}
+
+/* --- Q&A AREA --- */
+.prompt { margin: 0 0 20px; font-size: 1.2rem; line-height: 1.5; color: white; }
+
+/* ADJUSTED TO 80px TO FIT 16 ANSWERS */
+.answers { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 12px; margin: 20px 0; }
+.radio { 
+  display: flex; gap: 8px; align-items: center; padding: 12px; 
+  border: 1px solid var(--border); border-radius: 10px; 
+  background: rgba(255,255,255,0.02); cursor: pointer; transition: 0.2s; 
+  justify-content: center; font-weight: bold;
+}
+.radio input { display: none; } /* Hide the default radio circle */
+.radio:hover { border-color: var(--accent-2); background: rgba(79, 172, 254, 0.05); }
+.radio:has(input:checked) {
+  border-color: var(--accent-2);
+  background: rgba(79, 172, 254, 0.15);
+  color: var(--accent-2);
+  box-shadow: 0 0 10px rgba(79, 172, 254, 0.2);
+}
+
+/* --- 0/1 TOGGLE BUTTONS --- */
+.bits { display: flex; gap: 15px; flex-wrap: wrap; margin: 20px 0; justify-content: center; }
+.bit { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.bit .kbd { 
+  padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; 
+  font-family: monospace; font-weight: bold; font-size: 1rem; 
+  background: #0b1220; color: var(--accent-2); 
+}
+.toggle-btn {
+    width: 50px; 
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.1);
+    background: #0f172a;
+    color: #9aa4b2;
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: monospace;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.toggle-btn:hover { background: rgba(255,255,255,0.05); }
+.toggle-btn[data-val="1"] {
+    background: rgba(79, 172, 254, 0.15);
+    border-color: #4facfe;
+    color: #4facfe;
+    box-shadow: 0 0 12px rgba(79, 172, 254, 0.3);
+}
+
+/* --- BUTTONS --- */
+.btn { 
+  padding: 12px 24px; border-radius: 8px; border: none; 
+  background: var(--accent-2); color: #0b1220; font-weight: 800; 
+  cursor: pointer; transition: opacity 0.2s, transform 0.2s; font-size: 0.95rem;
+}
+.btn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+.btn.secondary { background: rgba(255,255,255,0.1); color: #fff; }
+
+/* HARD BLOCK DISABLED STATE */
+.btn:disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* --- FEEDBACK --- */
+.feedback { margin-top: 20px; padding: 15px; border-radius: 10px; font-weight: 600; text-align: center; }
+.good { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+.bad  { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+footer { padding: 20px; text-align: center; border-top: 1px solid var(--border); color: #64748b; font-size: 14px; margin-top: auto; }
+
+/* --- TRUTH TABLE STYLING --- */
+details.table { margin-top: 20px; }
+details.table summary { 
+  cursor: pointer; padding: 10px 15px; border: 1px solid var(--border); 
+  border-radius: 8px; background: #1e293b; color: #fff; font-size: 1rem; font-weight: bold;
+}
+.tt-body { 
+  border: 1px solid var(--border); border-top: none; 
+  border-radius: 0 0 8px 8px; padding: 0; overflow-x: auto; margin-top: 10px; 
+}
+
+table { width: 100%; border-collapse: collapse; font-size: 1rem; background: #0f172a; color: #e5e7eb; }
+th { background: rgba(255,255,255,0.05); padding: 10px; border-bottom: 1px solid var(--border); font-weight: 800; color: #94a3b8; }
+td { padding: 8px; border-bottom: 1px solid var(--border); text-align: center; font-family: monospace; font-weight: bold; }
+
+/* =========================================
+   📱 MOBILE NAV FIX — Header & Nav Links
+   ========================================= */
+@media (max-width: 900px) {
+  /* Stack brand + nav links vertically */
+  nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+  }
+
+  /* Show all nav links, wrap onto next line if needed */
+  .nav-links {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+  }
+  .nav-links a {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+/* =========================================
+   📱 MOBILE RESPONSIVENESS FIX
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Shrink panel padding so it fits on screen */
+    .panel, .bottom-panel .content {
+        padding: 15px !important;
+    }
+    
+    /* 2. Allow the diagram container to adjust its height */
+    .diagram-wrap, .diagram-panel {
+        height: auto !important; 
+        min-height: 250px !important;
+        padding: 10px 0 !important;
+    }
+    
+    /* 3. Force the SVG diagram to shrink perfectly to the screen width */
+    .diagram svg, #diagram-container svg, #svgHost svg {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* 4. Scale down inputs and answer boxes */
+    .answer-box {
+        font-size: 1.1rem !important;
+        height: auto !important;
+        padding: 15px !important;
+    }
+    .rand-row {
+        padding: 8px 15px !important;
+    }
+
+    /* 5. Stack action buttons vertically on small screens */
+    .action-buttons {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    .btn {
+        width: 100% !important;
+        padding: 12px !important;
+        margin: 0 !important;
+    }
+    
+    /* 6. Shrink title text */
+    .solver-header h1, .page-header h2 {
+        font-size: 1.5rem !important;
+    }
+}
